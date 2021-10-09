@@ -18,11 +18,12 @@ export default function Home({ exploreData }) {
       <main className='max-w-7xl mx-auto px-8 sm:px-16'>
         <section className='pt-6'>
           <h2 className='text-4xl font-semibold pb-5'>Explore Nearby</h2>
-          { exploreData?.map(place => (
+          { exploreData?.map(({ img, location, distance }, idx) => (
             <SmallCard
-              img={place.img}
-              location={place.location}
-              distance={place.distance}
+              key={idx}
+              img={img}
+              location={location}
+              distance={distance}
             />
           )) }
         </section>
