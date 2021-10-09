@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
+import { useRouter } from 'next/dist/client/router'
+
 import { DateRangePicker } from 'react-date-range'
 
 import 'react-date-range/dist/styles.css'
@@ -18,6 +20,7 @@ export default function Header() {
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   const [noOfGuests, setNoOfGuest] = useState(1)
+  const router = useRouter()
 
   const selectionRange = {
     startDate,
@@ -32,7 +35,10 @@ export default function Header() {
 
   return (
     <header className='sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10'>
-      <div className='relative flex items-center h-10 cursor-pointer my-auto'>
+      <div
+        onClick={() => router.push('/')}
+        className='relative flex items-center h-10 cursor-pointer my-auto'
+      >
         <Image
           src='https://links.papareact.com/qd3'
           layout='fill'
