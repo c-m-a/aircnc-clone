@@ -92,6 +92,7 @@ export default function Header() {
             >Cancel</button>
             <button
               className='flex-grow text-red-400'
+              onClick={ () => router.push('/search') }
             >Search</button>
           </div>
         </div>
