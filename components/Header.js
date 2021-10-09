@@ -15,7 +15,7 @@ import {
   UsersIcon
 } from '@heroicons/react/solid'
 
-export default function Header() {
+export default function Header({ placeholder }) {
   const [searchInput, setSearchInput] = useState('')
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
@@ -31,6 +31,18 @@ export default function Header() {
   const handleSelect = ranges => {
     setStartDate(ranges.selection.startDate)
     setEndDate(ranges.selection.endDate)
+  }
+
+  const search = () => {
+    router.push({
+      pathname: '/search',
+      query: {
+        location: searchInput,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        noOfGuests,
+      }
+    })
   }
 
   return (
@@ -50,7 +62,7 @@ export default function Header() {
         <input
           className='flex-grow pl-5 bg-transparent outline-none text-gray-600 placeholder-gray-400'
           type='text'
-          placeholder='Start your search'
+          placeholder={ placeholder || 'Start your search' }
           value={searchInput}
           onChange={e => setSearchInput(e.target.value)}
         />
@@ -92,7 +104,7 @@ export default function Header() {
             >Cancel</button>
             <button
               className='flex-grow text-red-400'
-              onClick={ () => router.push('/search') }
+              onClick={search}
             >Search</button>
           </div>
         </div>
