@@ -79,6 +79,15 @@ export default function Header() {
               onChange={e => setNoOfGuest(e.target.value)}
             />
           </div>
+          <div className='flex'>
+            <button
+              className='flex-grow text-gray-500'
+              onClick={ () => setSearchInput('') }
+            >Cancel</button>
+            <button
+              className='flex-grow text-red-400'
+            >Search</button>
+          </div>
         </div>
       ) }
     </header>
