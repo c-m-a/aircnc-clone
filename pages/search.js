@@ -1,9 +1,10 @@
 import { useRouter } from 'next/dist/client/router'
 import { format } from 'date-fns'
 
-import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
 import InfoCard from '../components/InfoCard'
+import Map from '../components/Map'
 
 export default function Search({ searchResults }) {
   const fmtDate = 'dd MMM yy'
@@ -42,6 +43,10 @@ export default function Search({ searchResults }) {
                 />
             )) }
           </div>
+        </section>
+
+        <section className='hidden xl:inline-flex xl:min-w-[60rem]'>
+          <Map />
         </section>
       </main>
       <Footer />
