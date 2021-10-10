@@ -45,8 +45,8 @@ export default function Search({ searchResults }) {
           </div>
         </section>
 
-        <section className='hidden xl:inline-flex xl:min-w-[60rem]'>
-          <Map />
+        <section className='hidden xl:inline-flex xl:min-w-[60rem] h-screen'>
+          <Map searchResults={searchResults} />
         </section>
       </main>
       <Footer />
