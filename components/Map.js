@@ -35,7 +35,7 @@ export default function Map({ searchResults }) {
           key={idx}
         >
           <Marker
-            className='rounded-full border font-semibold bg-white px-3 py-1 hover:z-50 hover:text-lg transition duration-100 ease-out'
+            className='rounded-full border font-semibold bg-white px-3 py-1 hover:z-40 hover:text-lg transition duration-100 ease-out'
             longitude={r.long}
             latitude={r.lat}
             offsetLeft={-20}
@@ -50,7 +50,7 @@ export default function Map({ searchResults }) {
 
           { selectedLocation.long === r.long ? (
             <Popup
-              className='rounded-4xl z-50 max-w-[21.2rem]'
+              className='rounded-4xl z-40 max-w-[21.2rem]'
               onClose={() => setSelectedLocation({})}
               closeOnClick={true}
               latitude={r.lat + .0013}
