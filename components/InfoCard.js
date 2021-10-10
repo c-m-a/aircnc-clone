@@ -3,9 +3,9 @@ import Image from 'next/image'
 import { HeartIcon } from '@heroicons/react/outline'
 import { StarIcon } from '@heroicons/react/solid'
 
-export default function InfoCard({ img, location, title, description, start, price, total }) {
+export default function InfoCard({ img, location, title, description, star, price, total }) {
   return (
-    <div className='flex py-7 px-2 border-b cursor-pointer'>
+    <div className='flex py-7 px-2 border-b cursor-pointer hover:opacity-80'>
       <div className='relative h-24 w-40 md:h-52 md:w-80 flex-shrink-0'>
         <Image
           src={img}
@@ -26,9 +26,9 @@ export default function InfoCard({ img, location, title, description, start, pri
         <p className='pt-2 text-sm text-gray-500 flex-grow'>{description}</p>
 
         <div className='flex justify-between items-end pt-5'>
-          <p>
+          <p className='flex'>
             <StarIcon className='h-5 text-red-400' />
-            {start}
+            {star}
           </p>
           <div>
             <p className='text-lg lg:text-2xlg font-semibold pb-2'>{price}</p>
