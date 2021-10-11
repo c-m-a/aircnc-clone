@@ -71,7 +71,7 @@ export default function Header({ placeholder, setShowModal }) {
         />
       </div>
       <div className='flex items-center justify-end space-x-4 text-gray-500'>
-        <p className='hidden md:inline hover:bg-gray-100'>Become a host</p>
+        <p className='hidden md:inline hover:bg-gray-50 px-3 py-2 rounded-full cursor-pointer'>Become a host</p>
         <GlobeAltIcon className='h-6 cursor-pointer' />
         <div
           onClick={() => setShowModal(true)}
