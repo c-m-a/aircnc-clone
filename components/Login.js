@@ -38,8 +38,8 @@ export default function Login({ setShowModal }) {
               className='text-2xl w-full outline-none'
               onChange={e => setCountryCode(e.target.value)}
             >
-              { countryCodes.map(country => (
-                <option value={country.id}>{`${country.name} (+${country.id})`}</option>
+              { countryCodes.map((country, idx) => (
+                <option key={idx} value={country.id}>{`${country.name} (+${country.id})`}</option>
               )) }
             </select>
           </div>
