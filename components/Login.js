@@ -12,7 +12,7 @@ const countryCodes = [
   }
 ]
 
-export default function Login() {
+export default function Login({ setShowModal }) {
   const [phone, setPhone] = useState('')
   const [countryCode, setCountryCode] = useState('57')
 
@@ -24,7 +24,10 @@ export default function Login() {
     <>
       <div className='bg-white w-40 rounded-xl xl:min-w-[57rem] xl:max-h-[60rem]'>
         <div className='flex justify-between items-center p-5 border-b'>
-          <XIcon className='h-5 hover:bg-gray-50 rounded' />
+          <XIcon
+            className='h-5 hover:bg-gray-50 rounded'
+            onClick={ () => setShowModal(false) }
+          />
           <h2 className='text-lg font-semibold'>Log in or sign up</h2>
           <i></i>
         </div>
@@ -32,7 +35,7 @@ export default function Login() {
           <h2 className="text-3xl font-semibold mb-4">Welcome to Aircnc</h2>
           <div className='border-2 border-gray-500 h-20 rounded flex items-center px-3'>
             <select
-              className='text-2xl w-full'
+              className='text-2xl w-full outline-none'
               onChange={e => setCountryCode(e.target.value)}
             >
               { countryCodes.map(country => (

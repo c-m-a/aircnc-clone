@@ -15,7 +15,7 @@ import {
   UsersIcon
 } from '@heroicons/react/solid'
 
-export default function Header({ placeholder }) {
+export default function Header({ placeholder, setShowModal }) {
   const [searchInput, setSearchInput] = useState('')
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
@@ -71,9 +71,12 @@ export default function Header({ placeholder }) {
         />
       </div>
       <div className='flex items-center justify-end space-x-4 text-gray-500'>
-        <p className='hidden md:inline'>Become a host</p>
+        <p className='hidden md:inline hover:bg-gray-100'>Become a host</p>
         <GlobeAltIcon className='h-6 cursor-pointer' />
-        <div className='flex items-center space-x-2 border-2 rounded-full p-2'>
+        <div
+          onClick={() => setShowModal(true)}
+          className='flex items-center space-x-2 border-2 rounded-full p-2'
+        >
           <MenuIcon className='h-6' />
           <UserCircleIcon className='h-6' />
         </div>
