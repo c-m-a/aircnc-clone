@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import firebase, { db } from '../firebase'
-import { collection, addDoc } from 'firebase/firestore'
+import { useRouter } from 'next/router'
+import { collection, addDoc, Timestamp } from 'firebase/firestore'
 
 import { ROOM_CFG } from '../constants'
 
 export default function BecomeAHost() {
+  const router = useRouter()
   const [room, setRoom] = useState({
-    id: 0,
     home_type: 0,
     room_type: 0,
     accommodate: 0,
@@ -15,14 +16,24 @@ export default function BecomeAHost() {
   })
 
   const handleSubmit = async () => {
-    const res = await addDoc(collection(db, 'rooms'), room)
-    console.log(res)
+    const roomRef = await addDoc(collection(db, 'rooms'), {
+      ...room,
+      timestamp: Timestamp.fromDate(new Date()),
+      published: false
+    })
+
+    if (roomRef.id) {
+      router.push({
+        pathname: 'rooms/[id]/listing',
+        query: { id: roomRef.id }
+      })
+    }
   }
 
   const isAllSelected = () => {
     for (const key of Object.keys(room)) {
       const value = room[key]
-      const notSelected = key !=='id' && parseInt(value) === 0
+      const notSelected = parseInt(value) === 0
       if (notSelected) return false;
     }
 
