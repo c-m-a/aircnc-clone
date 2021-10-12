@@ -1,4 +1,6 @@
 import Router from 'next/router'
+import { Provider } from 'next-auth/client'
+
 import ProgressBar from '@badrap/bar-of-progress'
 
 import 'tailwindcss/tailwind.css'
@@ -16,6 +18,10 @@ Router.events.on('routeChangeComplete', progress.finish)
 Router.events.on('routeChangeError', progress.finish)
 
 export default function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <Provider session={pageProps.session}>
+      <Component {...pageProps} />
+    </Provider>
+  )
 }
 
