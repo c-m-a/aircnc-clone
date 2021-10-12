@@ -1,6 +1,10 @@
 @tailwind components;
 
 @layer components {
+  .btn-primary {
+    @apply bg-red-400 text-white text-lg px-5 py-3 font-semibold rounded-lg;
+  }
+
   .btn-default {
     @apply px-4 py-2 border rounded-full cursor-pointer hover:shadow-lg active:scale-95 active:bg-gray-100 transition transform duration-100 ease-out;
   }
