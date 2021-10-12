@@ -13,7 +13,6 @@ import SmallCard from '../components/SmallCard'
 
 export default function Home({ exploreData, cardsData, session }) {
   const [showModal, setShowModal] = useState(false)
-  console.log(session)
 
   return (
     <div>
@@ -22,10 +21,7 @@ export default function Home({ exploreData, cardsData, session }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header
-        setShowModal={setShowModal}
-        session={session}
-      />
+      <Header setShowModal={setShowModal} />
       <Banner />
 
       <main className='max-w-7xl mx-auto px-8 sm:px-16'>
@@ -74,7 +70,6 @@ export default function Home({ exploreData, cardsData, session }) {
 export async function getServerSideProps(context) {
   // Get the user
   const session = await getSession(context)
-  console.log(session)
 
   const exploreData = await fetch('https://links.papareact.com/pyp')
     .then(res => res.json())
