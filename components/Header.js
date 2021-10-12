@@ -47,6 +47,10 @@ export default function Header({ placeholder, setShowModal }) {
     })
   }
 
+  const becomeAHost = () => {
+    router.push('/become-a-host')
+  }
+
   return (
     <header className='sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10'>
       <div
@@ -61,7 +65,7 @@ export default function Header({ placeholder, setShowModal }) {
         />
       </div>
 
-      <div className='flex items-center md:border-2 md:shadow-sm rounded-full py-2'>
+      <div className='flex items-center md:border-2 md:shadow-sm rounded-full py-2 min-w-[19rem]'>
         <input
           className='flex-grow pl-5 bg-transparent outline-none text-gray-600 placeholder-gray-400'
           type='text'
@@ -75,7 +79,20 @@ export default function Header({ placeholder, setShowModal }) {
       </div>
 
       <div className='flex items-center justify-end space-x-4 text-gray-500'>
-        <p className='hidden md:inline hover:bg-gray-50 px-3 py-2 rounded-full cursor-pointer'>Become a host</p>
+        { !session ?
+          <p
+            className='hidden lg:inline hover:bg-gray-50 px-3 py-2 rounded-full cursor-pointer'
+            onClick={setShowModal(true)}
+          >Become a host
+          </p>
+          :
+          <p
+            className='hidden lg:inline hover:bg-gray-50 px-3 py-2 rounded-full cursor-pointer'
+            onClick={becomeAHost}
+          >Become a host
+          </p>
+
+        }
         <GlobeAltIcon className='h-6 cursor-pointer' />
         { !session ?
           <div
@@ -88,7 +105,7 @@ export default function Header({ placeholder, setShowModal }) {
           :
           <div
             onClick={() => alert('User logged in!')}
-            className='flex items-center space-x-2 border-2 rounded-full p-2'
+            className='flex items-center space-x-2 border-2 rounded-full p-2 hover:shadow-lg'
           >
             <MenuIcon className={!session? 'h-6' : 'h-6 mr-2'} />
             { !session ?
