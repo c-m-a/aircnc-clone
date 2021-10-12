@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import { getSession } from 'next-auth/client'
+
 import { useState } from 'react'
 
 import Banner from '../components/Banner'
@@ -9,8 +11,9 @@ import Login from '../components/Login'
 import MediumCard from '../components/MediumCard'
 import SmallCard from '../components/SmallCard'
 
-export default function Home({ exploreData, cardsData }) {
+export default function Home({ exploreData, cardsData, session }) {
   const [showModal, setShowModal] = useState(false)
+  console.log(session)
 
   return (
     <div>
@@ -19,7 +22,10 @@ export default function Home({ exploreData, cardsData }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header setShowModal={setShowModal} />
+      <Header
+        setShowModal={setShowModal}
+        session={session}
+      />
       <Banner />
 
       <main className='max-w-7xl mx-auto px-8 sm:px-16'>
@@ -65,7 +71,11 @@ export default function Home({ exploreData, cardsData }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(context) {
+  // Get the user
+  const session = await getSession(context)
+  console.log(session)
+
   const exploreData = await fetch('https://links.papareact.com/pyp')
     .then(res => res.json())
 
@@ -73,6 +83,6 @@ export async function getStaticProps() {
     .then(res => res.json())
 
   return {
-    props: { exploreData, cardsData }
+    props: { exploreData, cardsData, session }
   }
 }
