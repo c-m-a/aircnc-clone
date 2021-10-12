@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import Image from 'next/image'
+import { signIn } from 'next-auth/client'
+
 import { XIcon } from '@heroicons/react/outline'
 
 const countryCodes = [
@@ -53,11 +56,35 @@ export default function Login({ setShowModal }) {
             />
           </div>
           <p className='mb-5'>We’ll call or text you to confirm your number. Standard message and data rates apply. Privacy Policy</p>
-          <div className='flex justify-center'>
+          <div className='flex justify-center mb-5'>
             <button
-              className='bg-red-400 text-white text-xl px-5 py-3 font-semibold rounded w-full'
+              className='bg-red-400 text-white text-lg px-5 py-3 font-semibold rounded-lg w-full'
             >
               continue
+            </button>
+          </div>
+
+          <div className='flex justify-between items-center space-x-4 mb-5'>
+            <i className='border w-full'></i>
+            <span>or</span>
+            <i className='border w-full'></i>
+          </div>
+
+          <div className='flex justify-center mb-5'>
+            <button
+              className='flex justify-between border-2 border-gray-400 text-gray-500 text-lg px-5 py-2 font-semibold rounded-lg w-full hover:border-gray-800'
+              onClick={signIn}
+            >
+              <Image
+                src='https://links.papareact.com/t4i'
+                height={45}
+                width={45}
+                objectFit='contain'
+              />
+              <span className='my-auto'>
+                Continue with Facebook
+              </span>
+              <i></i>
             </button>
           </div>
         </div>
