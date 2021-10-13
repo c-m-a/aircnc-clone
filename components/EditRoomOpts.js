@@ -7,7 +7,6 @@ import { ROOM_CFG } from '../constants'
 
 export default function RoomOpts({ room, setRoom }) {
   const router = useRouter()
-  console.log(room)
 
   const handleUpdateRoom = async () => {
     const roomRef = await addDoc(collection(db, 'rooms'), {
@@ -35,17 +34,17 @@ export default function RoomOpts({ room, setRoom }) {
   }
 
   return (
-    <>
+    <article>
       <div className='flex justify-center mb-3'>
         <select
           className='py-5 px-2 border-2 rounded-lg w-80'
           onChange={e => setRoom({ ...room, home_type: e.target.value })}
+          value={room.home_type}
         >
           { ROOM_CFG.homeType.map(rt => (
             <option
               key={rt.id}
               value={rt.id}
-              selected={parseInt(room.home_type) === rt.id && 'selected'}
             >{rt.name}</option>
           )) }
         </select>
@@ -55,12 +54,12 @@ export default function RoomOpts({ room, setRoom }) {
         <select
           className='py-5 px-2 border-2 rounded-lg w-80'
           onChange={e => setRoom({ ...room, room_type: e.target.value })}
+          value={room.room_type}
         >
           { ROOM_CFG.roomType.map(rt => (
             <option
               key={rt.id}
               value={rt.id}
-              selected={parseInt(room.room_type) === rt.id && 'selected'}
             >{rt.name}</option>
           )) }
         </select>
@@ -69,13 +68,13 @@ export default function RoomOpts({ room, setRoom }) {
       <div
         className='flex justify-center mb-3'
         onChange={e => setRoom({ ...room, accommodate: e.target.value })}
+        value={room.accommodate}
       >
         <select className='py-5 px-2 border-2 rounded-lg w-80'>
           { ROOM_CFG.accommodate.map(a => (
             <option
               key={a.id}
               value={a.id}
-              selected={parseInt(room.accommodate) === a.id && 'selected'}
             >{a.name}</option>
           )) }
         </select>
@@ -85,12 +84,12 @@ export default function RoomOpts({ room, setRoom }) {
         <select
           className='py-5 px-2 border-2 rounded-lg w-80'
           onChange={e => setRoom({ ...room, no_bedrooms: e.target.value })}
+          value={room.no_bedrooms}
         >
           { ROOM_CFG.bedrooms.map(b => (
             <option
               key={b.id}
               value={b.id}
-              selected={parseInt(room.no_bedrooms) === b.id && 'selected'}
             >{b.name}</option>
           )) }
         </select>
@@ -100,12 +99,12 @@ export default function RoomOpts({ room, setRoom }) {
         <select
           className='py-5 px-2 border-2 rounded-lg w-80'
           onChange={e => setRoom({ ...room, no_bathrooms: e.target.value })}
+          value={room.no_bathrooms}
         >
           { ROOM_CFG.bathrooms.map(b => (
             <option
               key={b.id}
               value={b.id}
-              selected={parseInt(room.no_bathrooms) === b.id && 'selected'}
             >{b.name}</option>
           )) }
         </select>
@@ -121,6 +120,7 @@ export default function RoomOpts({ room, setRoom }) {
           </button>
         </div>
       }
-    </>
+    </article>
   )
 }
+
