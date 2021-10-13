@@ -47,5 +47,11 @@ export const
         },
       ]
     }
-  ]
+  ],
+  FORM_OPTS = 0,
+  FORM_PRICING = 1,
+  FORM_DESCRIPTION = 2,
+  FORM_PHOTOS = 3,
+  FORM_AMENITIES = 4,
+  FORM_LOCATION = 5
 
