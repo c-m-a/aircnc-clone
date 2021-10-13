@@ -8,6 +8,7 @@ import { DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
+import Login from './Login'
 import {
   GlobeAltIcon,
   MenuIcon,
@@ -16,8 +17,9 @@ import {
   UsersIcon
 } from '@heroicons/react/solid'
 
-export default function Header({ placeholder, setShowModal }) {
+export default function Header({ placeholder }) {
   const [searchInput, setSearchInput] = useState('')
+  const [showModal, setShowModal] = useState(false)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   const [noOfGuests, setNoOfGuest] = useState(1)
@@ -82,7 +84,7 @@ export default function Header({ placeholder, setShowModal }) {
         { !session ?
           <p
             className='hidden lg:inline hover:bg-gray-50 px-3 py-2 rounded-full cursor-pointer'
-            onClick={setShowModal(true)}
+            onClick={() => setShowModal(true)}
           >Become a host
           </p>
           :
@@ -153,6 +155,10 @@ export default function Header({ placeholder, setShowModal }) {
           </div>
         </div>
       ) }
+
+      <div className={ showModal ? 'show-modal' : 'hide-modal' }>
+        <Login setShowModal={setShowModal} />
+      </div>
     </header>
   )
 }

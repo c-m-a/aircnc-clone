@@ -12,8 +12,6 @@ import MediumCard from '@components/MediumCard'
 import SmallCard from '@components/SmallCard'
 
 export default function Home({ exploreData, cardsData, session }) {
-  const [showModal, setShowModal] = useState(false)
-
   return (
     <div>
       <Head>
@@ -57,10 +55,6 @@ export default function Home({ exploreData, cardsData, session }) {
           description='Wishlist curated by Aircnc'
           buttonText='Get inspired!'
         />
-
-        <section className={ showModal ? 'show-modal' : 'hide-modal' }>
-          <Login setShowModal={setShowModal} />
-        </section>
       </main>
       <Footer />
     </div>

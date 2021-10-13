@@ -22,7 +22,6 @@ import {
 export default function Listing() {
   const router = useRouter()
   const roomId = router.query.pid
-  const [showModal, setShowModal] = useState(false)
   const [form, setForm] = useState(FORM_OPTS)
   const [room, setRoom] = useState({})
 
@@ -36,7 +35,7 @@ export default function Listing() {
 
   return (
     <>
-      <Header setShowModal={setShowModal} />
+      <Header />
       <main className='my-5 py-14 px-16'>
         <h1 className='text-3xl font-semibold mt-2 mb-6'>Your listing</h1>
         <section className='flex'>
