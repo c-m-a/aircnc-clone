@@ -3,13 +3,13 @@ import { getSession } from 'next-auth/client'
 
 import { useState } from 'react'
 
-import Banner from '../components/Banner'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-import LargeCard from '../components/LargeCard'
-import Login from '../components/Login'
-import MediumCard from '../components/MediumCard'
-import SmallCard from '../components/SmallCard'
+import Banner from '@components/Banner'
+import Footer from '@components/Footer'
+import Header from '@components/Header'
+import LargeCard from '@components/LargeCard'
+import Login from '@components/Login'
+import MediumCard from '@components/MediumCard'
+import SmallCard from '@components/SmallCard'
 
 export default function Home({ exploreData, cardsData, session }) {
   const [showModal, setShowModal] = useState(false)
