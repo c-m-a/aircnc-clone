@@ -10,7 +10,7 @@ import EditRoomOpts from '@components/EditRoomOpts'
 import SideBar from '@components/SideBar'
 
 import {
-  FORM_OPTS,
+  FORM_LISTING,
   FORM_PRICING,
   FORM_DESCRIPTION,
   FORM_PHOTOS,
@@ -22,7 +22,7 @@ import {
 export default function Listing() {
   const router = useRouter()
   const roomId = router.query.pid
-  const [form, setForm] = useState(FORM_OPTS)
+  const [form, setForm] = useState(FORM_LISTING)
   const [room, setRoom] = useState({})
 
   useEffect(async () => {
@@ -44,7 +44,7 @@ export default function Listing() {
             setRoom={setRoom}
             setForm={setForm}
           />
-          { form === FORM_OPTS &&
+          { form === FORM_LISTING &&
             <EditRoomOpts
               room={room}
               setRoom={setRoom}
