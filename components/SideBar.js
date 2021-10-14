@@ -16,32 +16,32 @@ export default function SideBar({ setForm }) {
       <SideBarRow
         title='Listing'
         setForm={setForm}
-        form_opt={FORM_LISTING}
+        formOpt={FORM_LISTING}
       />
       <SideBarRow
         title='Pricing'
         setForm={setForm}
-        form_opt={FORM_PRICING}
+        formOpt={FORM_PRICING}
       />
       <SideBarRow
         title='Description'
         setForm={setForm}
-        form_opt={FORM_DESCRIPTION}
+        formOpt={FORM_DESCRIPTION}
       />
       <SideBarRow
         title='Photos'
         setForm={setForm}
-        form_opt={FORM_PHOTOS}
+        formOpt={FORM_PHOTOS}
       />
       <SideBarRow
         title='Amenities'
         setForm={setForm}
-        form_opt={FORM_AMENITIES}
+        formOpt={FORM_AMENITIES}
       />
       <SideBarRow
         title='Location'
         setForm={setForm}
-        form_opt={FORM_LOCATION}
+        formOpt={FORM_LOCATION}
       />
     </section>
   )
