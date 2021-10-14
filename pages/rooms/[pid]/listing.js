@@ -4,9 +4,14 @@ import { useRouter } from 'next/dist/client/router'
 import firebase, { db } from '../../../firebase'
 import { doc, getDoc } from 'firebase/firestore'
 
+import Amenities from '@components/Amenities'
+import Description from '@components/Description'
+import EditRoomOpts from '@components/EditRoomOpts'
 import Footer from '@components/Footer'
 import Header from '@components/Header'
-import EditRoomOpts from '@components/EditRoomOpts'
+import Location from '@components/Location'
+import Photos from '@components/Photos'
+import Pricing from '@components/Pricing'
 import SideBar from '@components/SideBar'
 
 import {
@@ -46,6 +51,41 @@ export default function Listing() {
           />
           { form === FORM_LISTING &&
             <EditRoomOpts
+              room={room}
+              setRoom={setRoom}
+              setForm={setForm}
+            />
+          }
+          { form === FORM_PRICING &&
+            <Pricing
+              room={room}
+              setRoom={setRoom}
+              setForm={setForm}
+            />
+          }
+          { form === FORM_DESCRIPTION &&
+            <Description
+              room={room}
+              setRoom={setRoom}
+              setForm={setForm}
+            />
+          }
+          { form === FORM_PHOTOS &&
+            <Photos
+              room={room}
+              setRoom={setRoom}
+              setForm={setForm}
+            />
+          }
+          { form === FORM_AMENITIES &&
+            <Amenities
+              room={room}
+              setRoom={setRoom}
+              setForm={setForm}
+            />
+          }
+          { form === FORM_LOCATION &&
+            <Location
               room={room}
               setRoom={setRoom}
               setForm={setForm}
