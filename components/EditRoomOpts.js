@@ -34,10 +34,10 @@ export default function RoomOpts({ room, setRoom }) {
   }
 
   return (
-    <article>
+    <article className='w-full'>
       <div className='flex justify-center mb-3'>
         <select
-          className='py-5 px-2 border-2 rounded-lg w-80'
+          className='py-5 px-2 border-2 border-gray-500 rounded-lg w-80'
           onChange={e => setRoom({ ...room, home_type: e.target.value })}
           value={room.home_type}
         >
@@ -52,7 +52,7 @@ export default function RoomOpts({ room, setRoom }) {
 
       <div className='flex justify-center mb-3'>
         <select
-          className='py-5 px-2 border-2 rounded-lg w-80'
+          className='py-5 px-2 border-2 border-gray-500 rounded-lg w-80'
           onChange={e => setRoom({ ...room, room_type: e.target.value })}
           value={room.room_type}
         >
@@ -70,7 +70,7 @@ export default function RoomOpts({ room, setRoom }) {
         onChange={e => setRoom({ ...room, accommodate: e.target.value })}
         value={room.accommodate}
       >
-        <select className='py-5 px-2 border-2 rounded-lg w-80'>
+        <select className='py-5 px-2 border-2 border-gray-500 rounded-lg w-80'>
           { ROOM_CFG.accommodate.map(a => (
             <option
               key={a.id}
@@ -82,7 +82,7 @@ export default function RoomOpts({ room, setRoom }) {
 
       <div className='flex justify-center mb-3'>
         <select
-          className='py-5 px-2 border-2 rounded-lg w-80'
+          className='py-5 px-2 border-2 border-gray-500 rounded-lg w-80'
           onChange={e => setRoom({ ...room, no_bedrooms: e.target.value })}
           value={room.no_bedrooms}
         >
@@ -97,7 +97,7 @@ export default function RoomOpts({ room, setRoom }) {
 
       <div className='flex justify-center mb-5'>
         <select
-          className='py-5 px-2 border-2 rounded-lg w-80'
+          className='py-5 px-2 border-2 border-gray-500 rounded-lg w-80'
           onChange={e => setRoom({ ...room, no_bathrooms: e.target.value })}
           value={room.no_bathrooms}
         >
