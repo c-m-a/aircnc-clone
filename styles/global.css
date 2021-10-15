@@ -16,4 +16,8 @@
   .hide-modal {
     @apply hidden;
   }
+
+  .side-bar-btn {
+    @apply cursor-pointer p-3 mb-3 hover:bg-gray-100 rounded-lg;
+  }
 }
