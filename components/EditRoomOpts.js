@@ -34,10 +34,10 @@ export default function RoomOpts({ room, setRoom }) {
   }
 
   return (
-    <article className='w-full'>
+    <article className='w-full min-w-[15rem] md:w-80 mx-auto'>
       <div className='flex justify-center mb-3'>
         <select
-          className='py-5 px-2 border-2 border-gray-500 rounded-lg w-80'
+          className='py-5 px-2 border-2 border-gray-500 bg-white rounded-lg w-full'
           onChange={e => setRoom({ ...room, home_type: e.target.value })}
           value={room.home_type}
         >
@@ -52,7 +52,7 @@ export default function RoomOpts({ room, setRoom }) {
 
       <div className='flex justify-center mb-3'>
         <select
-          className='py-5 px-2 border-2 border-gray-500 rounded-lg w-80'
+          className='py-5 px-2 border-2 border-gray-500 bg-white rounded-lg w-full'
           onChange={e => setRoom({ ...room, room_type: e.target.value })}
           value={room.room_type}
         >
@@ -70,7 +70,8 @@ export default function RoomOpts({ room, setRoom }) {
         onChange={e => setRoom({ ...room, accommodate: e.target.value })}
         value={room.accommodate}
       >
-        <select className='py-5 px-2 border-2 border-gray-500 rounded-lg w-80'>
+        <select
+          className='py-5 px-2 border-2 border-gray-500 bg-white rounded-lg w-full'>
           { ROOM_CFG.accommodate.map(a => (
             <option
               key={a.id}
@@ -82,7 +83,7 @@ export default function RoomOpts({ room, setRoom }) {
 
       <div className='flex justify-center mb-3'>
         <select
-          className='py-5 px-2 border-2 border-gray-500 rounded-lg w-80'
+          className='py-5 px-2 border-2 border-gray-500 bg-white rounded-lg w-full'
           onChange={e => setRoom({ ...room, no_bedrooms: e.target.value })}
           value={room.no_bedrooms}
         >
@@ -97,7 +98,7 @@ export default function RoomOpts({ room, setRoom }) {
 
       <div className='flex justify-center mb-5'>
         <select
-          className='py-5 px-2 border-2 border-gray-500 rounded-lg w-80'
+          className='py-5 px-2 border-2 border-gray-500 bg-white rounded-lg w-full'
           onChange={e => setRoom({ ...room, no_bathrooms: e.target.value })}
           value={room.no_bathrooms}
         >
@@ -109,17 +110,6 @@ export default function RoomOpts({ room, setRoom }) {
           )) }
         </select>
       </div>
-
-      { isAllSelected() &&
-        <div className='flex justify-center mt-5'>
-          <button
-            onClick={handleUpdateRoom}
-            className='btn-primary w-80'
-          >
-            Save
-          </button>
-        </div>
-      }
     </article>
   )
 }
