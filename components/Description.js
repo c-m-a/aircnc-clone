@@ -18,13 +18,6 @@ export default function Description() {
         >
         </textarea>
       </div>
-      <div className='flex justify-center w-full'>
-        <button
-          className='btn-primary w-80'
-        >
-          Save
-        </button>
-      </div>
     </div>
   )
 }
