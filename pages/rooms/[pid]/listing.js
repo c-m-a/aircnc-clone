@@ -47,6 +47,7 @@ export default function Listing() {
           <SideBar
             room={room}
             setRoom={setRoom}
+            form={form}
             setForm={setForm}
           />
           { form === FORM_LISTING &&
