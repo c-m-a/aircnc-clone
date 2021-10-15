@@ -6,7 +6,7 @@ export default function Pricing() {
           className='font-medium text-lg px-4 my-auto'
           htmlFor='price'>Price</label>
         <input
-          className='border p-2 w-full'
+          className='border-2 border-gray-500 p-2 rounded-lg w-full'
           id='price'
           name='price'
           type='number'
