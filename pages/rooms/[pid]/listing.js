@@ -41,7 +41,7 @@ export default function Listing() {
   return (
     <>
       <Header />
-      <main className='my-5 py-14 px-16 min-h-[40rem]'>
+      <main className='py-5 px-4 md:px-16 min-h-[40rem]'>
         <h1 className='text-3xl font-semibold mt-2 mb-6'>Your listing</h1>
         <section className='flex'>
           <SideBar
@@ -52,6 +52,7 @@ export default function Listing() {
           />
           { form === FORM_LISTING &&
             <EditRoomOpts
+              className='flex-grow'
               room={room}
               setRoom={setRoom}
               setForm={setForm}
@@ -59,6 +60,7 @@ export default function Listing() {
           }
           { form === FORM_PRICING &&
             <Pricing
+              className='flex-grow'
               room={room}
               setRoom={setRoom}
               setForm={setForm}
@@ -66,6 +68,7 @@ export default function Listing() {
           }
           { form === FORM_DESCRIPTION &&
             <Description
+              className='flex-grow'
               room={room}
               setRoom={setRoom}
               setForm={setForm}
@@ -73,6 +76,7 @@ export default function Listing() {
           }
           { form === FORM_PHOTOS &&
             <Photos
+              className='flex-grow'
               room={room}
               setRoom={setRoom}
               setForm={setForm}
@@ -80,6 +84,7 @@ export default function Listing() {
           }
           { form === FORM_AMENITIES &&
             <Amenities
+              className='flex-grow'
               room={room}
               setRoom={setRoom}
               setForm={setForm}
@@ -87,11 +92,21 @@ export default function Listing() {
           }
           { form === FORM_LOCATION &&
             <Location
+              className='flex-grow'
               room={room}
               setRoom={setRoom}
               setForm={setForm}
             />
           }
+        </section>
+        <section>
+          <div className='flex justify-center mt-5'>
+            <button
+              className='btn-primary w-full sm:w-80'
+            >
+              Save
+            </button>
+          </div>
         </section>
       </main>
       <Footer />
