@@ -41,7 +41,7 @@ export default function Listing() {
   return (
     <>
       <Header />
-      <main className='my-5 py-14 px-16'>
+      <main className='my-5 py-14 px-16 min-h-[40rem]'>
         <h1 className='text-3xl font-semibold mt-2 mb-6'>Your listing</h1>
         <section className='flex'>
           <SideBar
