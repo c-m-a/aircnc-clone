@@ -3,12 +3,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import { useSession } from 'next-auth/client'
 
-import { DateRangePicker } from 'react-date-range'
-
-import 'react-date-range/dist/styles.css'
-import 'react-date-range/dist/theme/default.css'
-
-import Login from './Login'
 import {
   GlobeAltIcon,
   MenuIcon,
@@ -16,6 +10,12 @@ import {
   SearchIcon,
   UsersIcon
 } from '@heroicons/react/solid'
+import { DateRangePicker } from 'react-date-range'
+
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
+
+import Login from './Login'
 
 export default function Header({ placeholder }) {
   const [searchInput, setSearchInput] = useState('')
