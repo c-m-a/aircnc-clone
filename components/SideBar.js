@@ -21,7 +21,7 @@ import SideBarRow from './SideBarRow'
 
 export default function SideBar({ form, setForm }) {
   return (
-    <section className='p-2 min-w-[3.8rem] max-w-[30rem] w-80'>
+    <section className='p-2 sm:w-80'>
       <SideBarRow
         title='Listing'
         Icon={CollectionIcon}
