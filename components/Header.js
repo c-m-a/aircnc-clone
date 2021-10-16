@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import { signOut, useSession } from 'next-auth/client'
+import { useRecoilState } from 'recoil'
 
 import {
   GlobeAltIcon,
@@ -11,15 +12,16 @@ import {
   UsersIcon
 } from '@heroicons/react/solid'
 import { DateRangePicker } from 'react-date-range'
+import { modalState } from '@atoms/modalAtom'
+
+import Login from './Login'
 
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
-import Login from './Login'
-
 export default function Header({ placeholder }) {
   const [searchInput, setSearchInput] = useState('')
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useRecoilState(modalState)
   const [showMenu, setShowMenu] = useState(false)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
@@ -62,7 +64,7 @@ export default function Header({ placeholder }) {
     <header className='flex justify-between sticky top-0 z-50 bg-white shadow-md p-5 md:px-10'>
       <div
         onClick={() => router.push('/')}
-        className='relative flex items-center h-10 w-40 cursor-pointer my-auto'
+        className='relative flex items-center h-10 w-40 sm:w-64 cursor-pointer my-auto'
       >
         <Image
           src='https://links.papareact.com/qd3'
@@ -179,10 +181,6 @@ export default function Header({ placeholder }) {
           </div>
         </div>
       ) }
-
-      <div className={ showModal ? 'show-modal' : 'hide-modal' }>
-        <Login setShowModal={setShowModal} />
-      </div>
     </header>
   )
 }
