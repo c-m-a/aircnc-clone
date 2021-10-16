@@ -20,4 +20,12 @@
   .side-bar-btn {
     @apply cursor-pointer p-3 mb-3 hover:bg-gray-100 rounded-lg flex justify-between;
   }
+
+  .dropdown-menu {
+    @apply absolute bg-white text-gray-600 rounded-lg mt-2 w-60 right-10 shadow-lg z-50;
+  }
+
+  .dropdown-menu-hidden {
+    @apply hidden;
+  }
 }
