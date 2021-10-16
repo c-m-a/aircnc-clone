@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
-import { useSession } from 'next-auth/client'
+import { signOut, useSession } from 'next-auth/client'
 
 import {
   GlobeAltIcon,
@@ -20,6 +20,7 @@ import Login from './Login'
 export default function Header({ placeholder }) {
   const [searchInput, setSearchInput] = useState('')
   const [showModal, setShowModal] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   const [noOfGuests, setNoOfGuest] = useState(1)
@@ -35,6 +36,10 @@ export default function Header({ placeholder }) {
   const handleSelect = ranges => {
     setStartDate(ranges.selection.startDate)
     setEndDate(ranges.selection.endDate)
+  }
+
+  const handleToggleMenu = () => {
+    setShowMenu(!showMenu)
   }
 
   const search = () => {
@@ -83,13 +88,13 @@ export default function Header({ placeholder }) {
       <div className='flex items-center justify-end space-x-4 text-gray-500'>
         { !session ?
           <p
-            className='hidden lg:inline hover:bg-gray-50 px-3 py-2 rounded-full cursor-pointer'
+            className='hidden lg:inline hover:bg-gray-100 px-5 py-2 rounded-full cursor-pointer'
             onClick={() => setShowModal(true)}
           >Become a host
           </p>
           :
           <p
-            className='hidden lg:inline hover:bg-gray-50 px-3 py-2 rounded-full cursor-pointer'
+            className='hidden lg:inline hover:bg-gray-100 px-5 py-2 rounded-full cursor-pointer'
             onClick={becomeAHost}
           >Become a host
           </p>
@@ -97,30 +102,49 @@ export default function Header({ placeholder }) {
         }
         <GlobeAltIcon className='h-6 cursor-pointer' />
         { !session ?
-          <div
-            onClick={() => setShowModal(true)}
-            className='flex items-center space-x-2 border-2 rounded-full p-2'
-          >
-            <MenuIcon className='h-6' />
-            <UserCircleIcon className='h-6' />
-          </div>
+            <div
+              onClick={() => setShowModal(true)}
+              className='flex items-center space-x-2 border-2 rounded-full p-2'
+            >
+              <MenuIcon className='h-6' />
+              <UserCircleIcon className='h-6' />
+            </div>
           :
-          <div
-            onClick={() => alert('User logged in!')}
-            className='flex items-center space-x-2 border-2 rounded-full p-2 hover:shadow-lg'
-          >
-            <MenuIcon className={!session? 'h-6' : 'h-6 mr-2'} />
-            { !session ?
-                <UserCircleIcon className='h-6' />
-                :
-                <Image
-                  className='rounded-full cursor-pointer'
-                  src={session.user.image}
-                  height='22'
-                  width='22'
-                />
-            }
-          </div>
+            <div>
+              <div
+                onClick={() => handleToggleMenu(true)}
+                className='flex items-center space-x-2 border-2 rounded-full p-2 hover:shadow-lg'
+              >
+                <MenuIcon className={!session ? 'h-6' : 'h-6 mr-2'} />
+                { !session ?
+                    <UserCircleIcon className='h-6' />
+                  :
+                    <Image
+                      className='rounded-full cursor-pointer'
+                      src={session.user.image}
+                      height='22'
+                      width='22'
+                    />
+                }
+              </div>
+              <div className={ showMenu ? 'dropdown-menu' : 'dropdown-menu-hidden' }>
+                <ul>
+                  <li className='px-5 py-2 mt-2 hover:bg-gray-100 cursor-pointer font-medium text-gray-900'>Messages</li>
+                  <li className='px-5 py-2 hover:bg-gray-100 cursor-pointer font-medium text-gray-900'>Trips</li>
+                  <li className='px-5 py-2 hover:bg-gray-100 cursor-pointer font-medium text-gray-900'>Wishtlists</li>
+                  <hr />
+                  <li className='px-5 py-2 hover:bg-gray-100 cursor-pointer'>Manage listings</li>
+                  <li className='px-5 py-2 hover:bg-gray-100 cursor-pointer'>Host an experience</li>
+                  <li className='px-5 py-2 hover:bg-gray-100 cursor-pointer'>Account</li>
+                  <hr />
+                  <li className='px-5 py-2 hover:bg-gray-100 cursor-pointer'>Help</li>
+                  <li
+                    className='px-5 py-2 mb-2 hover:bg-gray-100 cursor-pointer'
+                    onClick={signOut}
+                  >Log Out</li>
+                </ul>
+              </div>
+            </div>
         }
       </div>
 
