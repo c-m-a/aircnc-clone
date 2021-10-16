@@ -41,7 +41,7 @@ export default function Login() {
           <h2 className="text-3xl font-semibold mb-4">Welcome to Aircnc</h2>
           <div className='border-2 border-gray-500 h-14 rounded-lg flex items-center px-3'>
             <select
-              className='text-xl w-full outline-none'
+              className='text-xl w-full outline-none bg-transparent'
               onChange={e => setCountryCode(e.target.value)}
             >
               { countryCodes.map((country, idx) => (
