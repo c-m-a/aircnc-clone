@@ -28,4 +28,24 @@
   .dropdown-menu-hidden {
     @apply hidden;
   }
+
+  .explorer-header {
+    @apply flex justify-center absolute inset-0 mt-6 z-40 w-[53rem] mx-auto hidden lg:inline-flex;
+  }
+
+  .search-input {
+    @apply flex items-center md:border-2 md:shadow-sm rounded-full py-1 hidden md:inline-flex;
+  }
+
+  .header {
+    @apply fixed w-screen top-0 z-50 bg-transparent p-5 md:px-10 h-[5rem];
+  }
+
+  .header-white {
+    @apply fixed w-screen top-0 z-50 bg-white p-5 md:px-10 h-[5rem];
+  }
+
+  .header-right-menu {
+    @apply flex items-center justify-end space-x-4;
+  }
 }
