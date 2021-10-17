@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import { signOut, useSession } from 'next-auth/client'
 import { useRecoilState } from 'recoil'
@@ -11,6 +11,8 @@ import {
   SearchIcon,
   UsersIcon
 } from '@heroicons/react/solid'
+import { XIcon } from '@heroicons/react/outline'
+
 import { DateRangePicker } from 'react-date-range'
 import { modalState } from '@atoms/modalAtom'
 
@@ -20,6 +22,7 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
 export default function Header({ placeholder }) {
+  const [scrollY, setScrollY] = useState(0)
   const [searchInput, setSearchInput] = useState('')
   const [showModal, setShowModal] = useRecoilState(modalState)
   const [showMenu, setShowMenu] = useState(false)
@@ -60,8 +63,16 @@ export default function Header({ placeholder }) {
     router.push('/become-a-host')
   }
 
+  useEffect(() => {
+    window.addEventListener('scroll', e => setScrollY(window.scrollY))
+
+    return () => {
+      window.removeEventListener('scroll', e => scrollY(window.scrollY))
+    }
+  }, [])
+
   return (
-    <header className='sticky top-0 z-50 bg-white shadow-md p-5 md:px-10'>
+    <header className={ scrollY ? 'header-white shadow-lg' : 'header' }>
       <div className='flex justify-between'>
         <div
           onClick={() => router.push('/')}
@@ -75,7 +86,7 @@ export default function Header({ placeholder }) {
           />
         </div>
 
-        <div className='flex items-center md:border-2 md:shadow-sm rounded-full py-2 hidden sm:inline-flex'>
+        <div className={ scrollY ? 'search-input' : 'hidden' }>
           <input
             className='flex-grow pl-5 bg-transparent outline-none text-gray-600 placeholder-gray-400'
             type='text'
@@ -88,7 +99,7 @@ export default function Header({ placeholder }) {
           />
         </div>
 
-        <div className='flex items-center justify-end space-x-4 text-gray-500'>
+        <div className={ scrollY ? 'header-right-menu' : 'header-right-menu text-white'}>
           { !session ?
             <p
               className='hidden lg:inline hover:bg-gray-100 px-5 py-2 rounded-full cursor-pointer'
@@ -107,7 +118,7 @@ export default function Header({ placeholder }) {
           { !session ?
               <div
                 onClick={() => setShowModal(true)}
-                className='flex items-center space-x-2 border-2 rounded-full p-2'
+                className='flex items-center space-x-2 border-2 rounded-full p-2 bg-white text-gray-500 border-gray-500'
               >
                 <MenuIcon className='h-6' />
                 <UserCircleIcon className='h-6' />
@@ -116,7 +127,7 @@ export default function Header({ placeholder }) {
               <div>
                 <div
                   onClick={() => handleToggleMenu(true)}
-                  className='flex items-center space-x-2 border-2 rounded-full p-2 hover:shadow-lg'
+                  className='flex items-center space-x-2 border-2 rounded-full p-2 hover:shadow-lg bg-white'
                 >
                   <MenuIcon className={!session ? 'h-6' : 'h-6 mr-2'} />
                   { !session ?
@@ -149,6 +160,106 @@ export default function Header({ placeholder }) {
                 </div>
               </div>
           }
+        </div>
+      </div>
+
+      <div className={ scrollY ? 'hidden' : 'explorer-header' }>
+        <div>
+          <div className='flex justify-center space-x-4 text-white mb-6'>
+            <div className='py-2 px-4'>Places to stay</div>
+            <div className='py-2 px-4'>Monthly stays</div>
+            <div className='py-2 px-4'>Experiences</div>
+          </div>
+          <div className='flex rounded-full bg-gray-100 shadow-md w-[53rem]'>
+            <div
+              className='flex items-center p-4 w-[15.2rem] hover:bg-gray-200 rounded-full cursor-pointer'
+              onClick={() => document.getElementById('location').focus()}
+            >
+              <div className='flex flex-col justify-center px-1 pl-4'>
+                <label
+                  className='text-gray-800 font-medium text-xs'
+                  htmlFor='location'
+                >Location</label>
+                <input
+                  className='w-40 outline-none bg-transparent text-sm cursor-pointer'
+                  id='location'
+                  name='location'
+                  type='text'
+                  placeholder='Where are you going?'
+                />
+              </div>
+              <div className='flex justify-center w-[3rem]'>
+                <div
+                  className='flex justify-center items-center h-6 w-6 bg-gray-300 rounded-full'
+                >
+                  <XIcon
+                    className='h-5 bg-gray-300 rounded-full'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='flex items-center p-4 w-[10rem] hover:bg-gray-200 rounded-full cursor-pointer'>
+              <div className='w-full ml-2'>
+                <div
+                  className='text-xs'
+                >Check in</div>
+                <div
+                  className='text-gray-400 text-sm cursor-pointer'
+                >Add dates</div>
+              </div>
+              <div className='flex justify-center w-[3rem]'></div>
+            </div>
+            <div className='flex items-center p-4 w-[10rem] hover:bg-gray-200 rounded-full cursor-pointer'>
+              <div className='w-full ml-2'>
+                <div
+                  className='text-xs'
+                >Check out</div>
+                <div
+                  className='text-gray-400 text-sm'
+                >Add dates</div>
+              </div>
+              <div className='flex justify-center w-[3rem]'>
+                <div
+                  className='flex justify-center items-center h-6 w-6 bg-gray-300 rounded-full'
+                >
+                  <XIcon
+                    className='h-5 bg-gray-300 rounded-full'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='flex flex-grow justify-between items-center p-4 w-[16.5rem] hover:bg-gray-200 rounded-full cursor-pointer'>
+              <div className='w-full'>
+                <div
+                  className='text-xs'
+                >Guests</div>
+                <div
+                  className='text-gray-400 text-sm cursor-pointer whitespace-nowrap'
+                >
+                  Add guests
+                </div>
+              </div>
+              <div className='flex justify-center w-[3rem] mx-3'>
+                <div
+                  className='flex justify-center items-center h-6 w-6 bg-gray-300 rounded-full'
+                >
+                  <XIcon
+                    className='h-5 bg-gray-300 rounded-full'
+                  />
+                </div>
+              </div>
+              <button
+                className='flex items-center h-8 bg-red-400 text-white rounded-full py-6 px-4 cursor-pointer text-sm'
+              >
+                <SearchIcon
+                  className='h-6 mr-2'
+                />
+                <span
+                  className='font-semibold'
+                >Search</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
